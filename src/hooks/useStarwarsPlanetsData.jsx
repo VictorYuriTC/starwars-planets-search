@@ -8,18 +8,18 @@ const useStarwarsPlanetsData = () => {
       const starwarsPlanetsURL = 'https://swapi-trybe.herokuapp.com/api/planets/';
       const starwarsPlanetsResponse = await fetch(starwarsPlanetsURL);
       const starwarsPlanetsData = await starwarsPlanetsResponse.json();
-      const { results } = starwarsPlanetsData;
 
       const INDEX_OF_RESIDENTS_OBJECT = 9;
       const AMOUNT_OF_ITEMS_TO_BE_REVOVED_FROM_ARRAY = 1;
+      const { results } = starwarsPlanetsData;
 
-      const resultsEntriesWithoutResidents = results
+      const resultsEntries = results
         .map((result) => Object.entries(result));
 
-      resultsEntriesWithoutResidents.forEach((entry) => entry
+      resultsEntries.forEach((entry) => entry
         .splice(INDEX_OF_RESIDENTS_OBJECT, AMOUNT_OF_ITEMS_TO_BE_REVOVED_FROM_ARRAY));
 
-      const objectResultsWithoutResidents = resultsEntriesWithoutResidents
+      const objectResultsWithoutResidents = resultsEntries
         .map((entry) => Object.fromEntries(entry));
 
       setStarwarsData(objectResultsWithoutResidents);

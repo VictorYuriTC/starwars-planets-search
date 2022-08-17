@@ -8,6 +8,15 @@ function Table() {
   useEffect(() => {
   }, [starwarsPlanetsData]);
 
+  const renderStarwarsPlanetsData = (
+    starwarsPlanetsData.map((planet) => (
+      <PlanetTableRowCard
+        key={ planet.url }
+        planet={ planet }
+      />
+    ))
+  );
+
   return (
     <table>
       <thead>
@@ -55,12 +64,7 @@ function Table() {
       </thead>
       <tbody>
         {
-          starwarsPlanetsData.map((planet) => (
-            <PlanetTableRowCard
-              key={ planet.url }
-              planet={ planet }
-            />
-          ))
+          renderStarwarsPlanetsData
         }
       </tbody>
     </table>
