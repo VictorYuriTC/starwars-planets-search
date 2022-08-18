@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import filterPlanetsContext from '../context/filterPlanetsContext';
 
 function Filters() {
@@ -21,6 +21,10 @@ function Filters() {
     setComparison,
     setValue,
   } = setFilterByNumbericValues;
+
+  useEffect(() => {
+    setIsFilteringByNumbericInfo(false);
+  }, [filterByName]);
 
   return (
     <>

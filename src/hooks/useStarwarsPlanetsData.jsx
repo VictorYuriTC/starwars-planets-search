@@ -45,7 +45,6 @@ const useStarwarsPlanetsData = () => {
     const filterPlanetsByName = () => {
       setStarwarsFilteredPlanets(starwarsData
         .filter((planet) => planet.name.includes(filterByName)));
-      console.log(column);
     };
 
     filterPlanetsByName();

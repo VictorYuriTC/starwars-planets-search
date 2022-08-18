@@ -25,14 +25,12 @@ function Table() {
     }
 
     if (!isFilteringByNumericInfo) {
-      return (
-        starwarsPlanetsData.map((planet) => (
-          <PlanetTableRowCard
-            key={ planet.url }
-            planet={ planet }
-          />
-        ))
-      );
+      return starwarsPlanetsData.map((planet) => (
+        <PlanetTableRowCard
+          key={ planet.url }
+          planet={ planet }
+        />
+      ));
     }
   };
 
