@@ -1,22 +1,42 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
+import filterPlanetsContext from '../context/filterPlanetsContext';
+import useNumericFilters from '../hooks/useNumericFilters';
 import useStarwarsPlanetsData from '../hooks/useStarwarsPlanetsData';
 import Filters from './Filters';
 import PlanetTableRowCard from './PlanetTableRowCard';
 
 function Table() {
   const starwarsPlanetsData = useStarwarsPlanetsData();
+  const starwarsPlanetsFilteredByNumericInfo = useNumericFilters();
+  const { isFilteringByNumericInfo } = useContext(filterPlanetsContext);
 
   useEffect(() => {
   }, [starwarsPlanetsData]);
 
-  const renderStarwarsPlanetsData = (
-    starwarsPlanetsData.map((planet) => (
-      <PlanetTableRowCard
-        key={ planet.url }
-        planet={ planet }
-      />
-    ))
-  );
+  const renderFilteredPlanets = () => {
+    if (isFilteringByNumericInfo) {
+      return (
+        starwarsPlanetsFilteredByNumericInfo.map((planet) => (
+          <PlanetTableRowCard
+            key={ planet.url }
+            planet={ planet }
+          />))
+      );
+    }
+
+    if (!isFilteringByNumericInfo) {
+      return (
+        starwarsPlanetsData.map((planet) => (
+          <PlanetTableRowCard
+            key={ planet.url }
+            planet={ planet }
+          />
+        ))
+      );
+    }
+  };
+
+  const renderPlanets = renderFilteredPlanets();
 
   return (
     <>
@@ -67,7 +87,7 @@ function Table() {
         </thead>
         <tbody>
           {
-            renderStarwarsPlanetsData
+            renderPlanets
           }
         </tbody>
       </table>

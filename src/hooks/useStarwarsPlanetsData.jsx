@@ -3,7 +3,18 @@ import filterPlanetsContext from '../context/filterPlanetsContext';
 
 const useStarwarsPlanetsData = () => {
   const [starwarsData, setStarwarsData] = useState([]);
-  const { filterByName } = useContext(filterPlanetsContext);
+  const [starwarsFilteredPlanets, setStarwarsFilteredPlanets] = useState([]);
+  const {
+    setIsFilteringByNumbericInfo,
+    filterByName,
+    filterByNumericValues: {
+      column,
+    },
+  } = useContext(filterPlanetsContext);
+
+  useEffect(() => {
+    setIsFilteringByNumbericInfo(false);
+  }, [filterByName]);
 
   useEffect(() => {
     const getStarwarsPlanetsDataFromAPI = async () => {
@@ -21,16 +32,26 @@ const useStarwarsPlanetsData = () => {
       resultsEntries.forEach((entry) => entry
         .splice(INDEX_OF_RESIDENTS_OBJECT, AMOUNT_OF_ITEMS_TO_BE_REVOVED_FROM_ARRAY));
 
-      const objectResultsWithoutResidents = resultsEntries
+      const planetsWithoutResidentsObject = resultsEntries
         .map((entry) => Object.fromEntries(entry));
 
-      setStarwarsData(objectResultsWithoutResidents
-        .filter((planet) => planet.name.includes(filterByName)));
+      setStarwarsFilteredPlanets(planetsWithoutResidentsObject);
+      setStarwarsData(planetsWithoutResidentsObject);
     };
     getStarwarsPlanetsDataFromAPI();
-  }, [filterByName]);
+  }, []);
 
-  return starwarsData;
+  useEffect(() => {
+    const filterPlanetsByName = () => {
+      setStarwarsFilteredPlanets(starwarsData
+        .filter((planet) => planet.name.includes(filterByName)));
+      console.log(column);
+    };
+
+    filterPlanetsByName();
+  }, [starwarsData, filterByName, column]);
+
+  return starwarsFilteredPlanets;
 };
 
 export default useStarwarsPlanetsData;

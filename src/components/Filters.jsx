@@ -5,6 +5,7 @@ function Filters() {
   const {
     filterByName,
     setFilterByName,
+    setIsFilteringByNumbericInfo,
     filterByNumericValues,
     setFilterByNumbericValues,
   } = useContext(filterPlanetsContext);
@@ -44,19 +45,19 @@ function Filters() {
           data-testid="column-filter"
         >
           <option value="population">
-            Population
+            population
           </option>
           <option value="orbital_period">
-            Orbital Period
+            orbital_period
           </option>
           <option value="diameter">
-            Diameter
+            diameter
           </option>
           <option value="rotation_period">
-            Rotation Period
+            rotation_period
           </option>
           <option value="surface_water">
-            Surface Water
+            surface_water
           </option>
         </select>
       </label>
@@ -68,9 +69,9 @@ function Filters() {
           value={ comparison }
           onChange={ ({ target }) => setComparison(target.value) }
         >
-          <option value="maior que">Maior que</option>
-          <option value="menor que">Menor que</option>
-          <option value="igual a">Igual a</option>
+          <option value="maior que">maior que</option>
+          <option value="menor que">menor que</option>
+          <option value="igual a">igual a</option>
         </select>
       </label>
       <label htmlFor="value-filter">
@@ -85,6 +86,7 @@ function Filters() {
       <button
         type="button"
         data-testid="button-filter"
+        onClick={ () => { setIsFilteringByNumbericInfo(true); } }
       >
         Filtrar
       </button>
