@@ -32,7 +32,7 @@ function PlanetTableRowCard({ planet }) {
         { planet.population }
       </td>
       <td>
-        { planet.films }
+        <a href={ planet.films }>{ planet.films }</a>
       </td>
       <td>
         { planet.created }
@@ -41,7 +41,7 @@ function PlanetTableRowCard({ planet }) {
         { planet.edited }
       </td>
       <td>
-        { planet.url }
+        <a href={ planet.url }>{ planet.url }</a>
       </td>
     </tr>
   );

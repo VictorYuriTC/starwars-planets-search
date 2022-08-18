@@ -10,31 +10,25 @@ function Table() {
   const starwarsPlanetsFilteredByNumericInfo = useNumericFilters();
   const { isFilteringByNumericInfo } = useContext(filterPlanetsContext);
 
-  useEffect(() => {
-  }, [starwarsPlanetsData]);
-
-  const renderFilteredPlanets = () => {
-    if (isFilteringByNumericInfo) {
-      return (
-        starwarsPlanetsFilteredByNumericInfo.map((planet) => (
-          <PlanetTableRowCard
-            key={ planet.url }
-            planet={ planet }
-          />))
-      );
-    }
-
+  const planetsToBeRendered = () => {
     if (!isFilteringByNumericInfo) {
-      return starwarsPlanetsData.map((planet) => (
-        <PlanetTableRowCard
-          key={ planet.url }
-          planet={ planet }
-        />
-      ));
+      return starwarsPlanetsData;
+    }
+    if (isFilteringByNumericInfo) {
+      return starwarsPlanetsFilteredByNumericInfo;
     }
   };
 
-  const renderPlanets = renderFilteredPlanets();
+  useEffect(() => {
+  }, [starwarsPlanetsData]);
+
+  const renderFilteredPlanets = (
+    planetsToBeRendered().map((planet) => (
+      <PlanetTableRowCard
+        key={ planet.url }
+        planet={ planet }
+      />))
+  );
 
   return (
     <>
@@ -85,7 +79,7 @@ function Table() {
         </thead>
         <tbody>
           {
-            renderPlanets
+            renderFilteredPlanets
           }
         </tbody>
       </table>
