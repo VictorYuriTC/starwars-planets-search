@@ -7,7 +7,6 @@ function Table() {
   const starwarsPlanetsData = useStarwarsPlanetsData();
 
   useEffect(() => {
-    console.log(starwarsPlanetsData);
   }, [starwarsPlanetsData]);
 
   const renderStarwarsPlanetsData = (

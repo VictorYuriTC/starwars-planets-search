@@ -5,8 +5,25 @@ import filterPlanetsContext from './context/filterPlanetsContext';
 function App() {
   const [filterByName, setFilterByName] = useState('');
 
+  const [column, setColumn] = useState('population');
+
+  const [comparison, setComparison] = useState('maior que');
+
+  const [value, setValue] = useState('0');
+
+  const filterByNumericValues = { column, comparison, value };
+
+  const setFilterByNumbericValues = { setColumn, setComparison, setValue };
+
   return (
-    <filterPlanetsContext.Provider value={ { filterByName, setFilterByName } }>
+    <filterPlanetsContext.Provider
+      value={ {
+        filterByName,
+        setFilterByName,
+        filterByNumericValues,
+        setFilterByNumbericValues,
+      } }
+    >
       <Table />
     </filterPlanetsContext.Provider>
   );
