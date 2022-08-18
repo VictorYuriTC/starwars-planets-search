@@ -1,10 +1,14 @@
-import React from 'react';
-import './App.css';
+import React, { useState } from 'react';
 import Table from './components/Table';
+import filterPlanetsContext from './context/filterPlanetsContext';
 
 function App() {
+  const [filterByName, setFilterByName] = useState('');
+
   return (
-    <Table />
+    <filterPlanetsContext.Provider value={ { filterByName, setFilterByName } }>
+      <Table />
+    </filterPlanetsContext.Provider>
   );
 }
 

@@ -1,7 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import filterPlanetsContext from '../context/filterPlanetsContext';
 
 const useStarwarsPlanetsData = () => {
   const [starwarsData, setStarwarsData] = useState([]);
+  const { filterByName } = useContext(filterPlanetsContext);
 
   useEffect(() => {
     const getStarwarsPlanetsDataFromAPI = async () => {
@@ -22,10 +24,11 @@ const useStarwarsPlanetsData = () => {
       const objectResultsWithoutResidents = resultsEntries
         .map((entry) => Object.fromEntries(entry));
 
-      setStarwarsData(objectResultsWithoutResidents);
+      setStarwarsData(objectResultsWithoutResidents
+        .filter((planet) => planet.name.includes(filterByName)));
     };
     getStarwarsPlanetsDataFromAPI();
-  }, []);
+  }, [filterByName]);
 
   return starwarsData;
 };
