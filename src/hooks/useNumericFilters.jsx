@@ -14,21 +14,21 @@ const useNumericFilters = () => {
 
   useEffect(() => {
     const filterByPopulation = () => {
-      if (column === 'population') {
-        if (comparison === 'maior que') {
-          setStarwarsFilteredPlanets(starwarsData
-            .filter(({ population }) => Number(population) > Number(value)));
-        }
+      if (column !== 'population') return;
 
-        if (comparison === 'igual a') {
-          setStarwarsFilteredPlanets(starwarsData
-            .filter(({ population }) => Number(population) === Number(value)));
-        }
+      if (comparison === 'maior que') {
+        setStarwarsFilteredPlanets(starwarsData
+          .filter(({ population }) => Number(population) > Number(value)));
+      }
 
-        if (comparison === 'menor que') {
-          setStarwarsFilteredPlanets(starwarsData
-            .filter(({ population }) => Number(population) < Number(value)));
-        }
+      if (comparison === 'igual a') {
+        setStarwarsFilteredPlanets(starwarsData
+          .filter(({ population }) => Number(population) === Number(value)));
+      }
+
+      if (comparison === 'menor que') {
+        setStarwarsFilteredPlanets(starwarsData
+          .filter(({ population }) => Number(population) < Number(value)));
       }
     };
 
