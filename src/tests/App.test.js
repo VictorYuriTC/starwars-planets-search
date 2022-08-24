@@ -2,8 +2,6 @@ import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import App from '../App';
 import userEvent from '@testing-library/user-event';
-import mockData from './helpers/mockData'
-import useNumericFilters from '../hooks/useNumericFilters';
 
 describe('Filters component suite tests', () => {
   it('should filter planets by name', () => {
