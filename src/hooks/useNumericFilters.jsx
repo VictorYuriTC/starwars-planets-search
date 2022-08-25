@@ -15,35 +15,7 @@ const useNumericFilters = () => {
     filterAllPlanets();
   }, [starwarsData]);
 
-  useEffect(() => {
-    const filterByPopulation = () => {
-      selectedFilters.forEach(({ column, comparison, value }) => {
-        if (column === 'population') {
-          if (comparison === 'maior que') {
-            const filteredPlanets = starwarsFilteredPlanets
-              .filter(({ population }) => Number(population) > Number(value));
-            setStarwarsFilteredPlanets(filteredPlanets);
-          }
-
-          if (comparison === 'igual a') {
-            const filteredPlanets = starwarsFilteredPlanets
-              .filter(({ population }) => Number(population) === Number(value));
-            setStarwarsFilteredPlanets(filteredPlanets);
-          }
-
-          if (comparison === 'menor que') {
-            const filteredPlanets = starwarsFilteredPlanets
-              .filter(({ population }) => Number(population) < Number(value));
-            setStarwarsFilteredPlanets(filteredPlanets);
-          }
-        }
-      });
-    };
-
-    filterByPopulation();
-  }, [selectedFilters]);
-
-  useEffect(() => {
+  /*   useEffect(() => {
     const filterByOrbitalPeriod = () => {
       selectedFilters.forEach(({ column, comparison, value }) => {
         if (column === 'orbital_period') {
@@ -97,9 +69,9 @@ const useNumericFilters = () => {
     };
 
     filterByDiameter();
-  }, [selectedFilters]);
+  }, [selectedFilters]); */
 
-  useEffect(() => {
+  /* useEffect(() => {
     const filterByRotationPeriod = () => {
       selectedFilters.forEach(({ column, comparison, value }) => {
         if (column === 'rotation_period') {
@@ -125,36 +97,64 @@ const useNumericFilters = () => {
     };
 
     filterByRotationPeriod();
-  }, [selectedFilters]);
+  }, [selectedFilters]); */
 
   useEffect(() => {
     const filterBySurfaceWater = () => {
       selectedFilters.forEach(({ column, comparison, value }) => {
-        if (column === 'surface_water') {
-          if (comparison === 'maior que') {
-            const filteredPlanets = starwarsFilteredPlanets
-              .filter((planet) => Number(planet.surface_water) > Number(value));
-            setStarwarsFilteredPlanets(filteredPlanets);
-          }
-
-          if (comparison === 'igual a') {
-            const filteredPlanets = starwarsFilteredPlanets
-              .filter((planet) => Number(planet.surface_water) === Number(value));
-            setStarwarsFilteredPlanets(filteredPlanets);
-          }
-
-          if (comparison === 'menor que') {
-            const filteredPlanets = starwarsFilteredPlanets
-              .filter((planet) => Number(planet.surface_water) < Number(value));
-            setStarwarsFilteredPlanets(filteredPlanets);
-          }
+        /* if (column === 'surface_water') { */
+        if (comparison === 'maior que') {
+          const filteredPlanets = starwarsFilteredPlanets
+            .filter((planet) => Number(planet[column]) > Number(value));
+          setStarwarsFilteredPlanets(filteredPlanets);
         }
+
+        if (comparison === 'igual a') {
+          const filteredPlanets = starwarsFilteredPlanets
+            .filter((planet) => Number(planet[column]) === Number(value));
+          setStarwarsFilteredPlanets(filteredPlanets);
+        }
+
+        if (comparison === 'menor que') {
+          const filteredPlanets = starwarsFilteredPlanets
+            .filter((planet) => Number(planet[column]) < Number(value));
+          setStarwarsFilteredPlanets(filteredPlanets);
+        }
+        /* } */
       });
     };
 
     filterBySurfaceWater();
   }, [selectedFilters]);
 
+  /* useEffect(() => {
+    const filterByPopulation = () => {
+      selectedFilters.forEach(({ column, comparison, value }) => {
+        if (column === 'population') {
+          if (comparison === 'maior que') {
+            const filteredPlanets = starwarsFilteredPlanets
+              .filter(({ population }) => Number(population) > Number(value));
+            setStarwarsFilteredPlanets(filteredPlanets);
+          }
+
+          if (comparison === 'igual a') {
+            const filteredPlanets = starwarsFilteredPlanets
+              .filter(({ population }) => Number(population) === Number(value));
+            setStarwarsFilteredPlanets(filteredPlanets);
+          }
+
+          if (comparison === 'menor que') {
+            const filteredPlanets = starwarsFilteredPlanets
+              .filter(({ population }) => Number(population) < Number(value));
+            setStarwarsFilteredPlanets(filteredPlanets);
+          }
+        }
+      });
+    };
+
+    filterByPopulation();
+  }, [selectedFilters]);
+ */
   return starwarsFilteredPlanets;
 };
 
