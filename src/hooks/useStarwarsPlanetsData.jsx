@@ -38,7 +38,7 @@ const useStarwarsPlanetsData = () => {
       setStarwarsData(planetsWithoutResidentsObject);
     };
     getStarwarsPlanetsDataFromAPI();
-  }, []);
+  }, [selectedFilters]);
 
   useEffect(() => {
     const filterPlanetsByName = () => {
@@ -47,7 +47,7 @@ const useStarwarsPlanetsData = () => {
     };
 
     filterPlanetsByName();
-  }, [starwarsData, filterByName]);
+  }, [filterByName]);
 
   // dynamically working thankfully to Lala :)
 
