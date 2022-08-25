@@ -35,6 +35,7 @@ function Table() {
             type="button"
             key={ index }
             onClick={ () => {
+              // buttons working thankfully to Carla Uyemura :)
               setStarwarsFilteredPlanets(starwarsData);
               const cloneArray = [...selectedFilters];
               cloneArray.splice(index);
