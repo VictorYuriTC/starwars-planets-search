@@ -24,6 +24,7 @@ function Table() {
         <button
           type="button"
           key={ index }
+          data-testid="filter"
           onClick={ () => {
             const cloneArray = [...selectedFilters];
             cloneArray.splice(index);
