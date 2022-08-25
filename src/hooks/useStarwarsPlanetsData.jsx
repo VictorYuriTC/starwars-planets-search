@@ -3,8 +3,9 @@ import filterPlanetsContext from '../context/filterPlanetsContext';
 
 const useStarwarsPlanetsData = () => {
   const [starwarsData, setStarwarsData] = useState([]);
-  const [starwarsFilteredPlanets, setStarwarsFilteredPlanets] = useState([]);
   const {
+    starwarsFilteredPlanets,
+    setStarwarsFilteredPlanets,
     setIsFilteringByNumbericInfo,
     filterByName,
   } = useContext(filterPlanetsContext);
@@ -38,7 +39,7 @@ const useStarwarsPlanetsData = () => {
       setStarwarsData(planetsWithoutResidentsObject);
     };
     getStarwarsPlanetsDataFromAPI();
-  }, [selectedFilters]);
+  }, []);
 
   useEffect(() => {
     const filterPlanetsByName = () => {

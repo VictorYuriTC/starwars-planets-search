@@ -10,15 +10,9 @@ function Filters() {
     setFilterByNumbericValues,
     selectedFilters,
     setSelectedFilters,
+    columnOptions,
+    setColumnOptions,
   } = useContext(filterPlanetsContext);
-
-  const [columnOptions, setColumnOptions] = useState([
-    'population',
-    'orbital_period',
-    'diameter',
-    'rotation_period',
-    'surface_water',
-  ]);
 
   const {
     column,
@@ -32,8 +26,18 @@ function Filters() {
     setValue,
   } = setFilterByNumbericValues;
 
+  const removeColumnOptionFromSelect = () => {
+    const columnOptionsAfterDeletion = columnOptions
+      .filter((option) => option !== column);
+    /*       console.log(columnOptionsAfterDeletion); */
+    setColumnOptions(columnOptionsAfterDeletion);
+  };
+
   const onClickSaveNewFilter = () => {
     setSelectedFilters([...selectedFilters, { column, comparison, value }]);
+
+    removeColumnOptionFromSelect();
+    setColumn(columnOptions[1]);
   };
 
   const onClickRemoveAllFilters = () => {
@@ -45,17 +49,17 @@ function Filters() {
       <OptionCard key={ option } columnName={ option } />
     ))
   );
-
+  /*
   useEffect(() => {
     const removeColumnOptionFromSelect = () => {
       const columnOptionsAfterDeletion = columnOptions
-        .filter((option) => !selectedFilters.includes(option));
+        .filter((option) => option ===);
       console.log(columnOptionsAfterDeletion);
       setColumnOptions(columnOptionsAfterDeletion);
     };
 
     removeColumnOptionFromSelect();
-  }, [selectedFilters]);
+  }, [selectedFilters]); */
 
   return (
     <>

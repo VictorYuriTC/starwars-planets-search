@@ -21,6 +21,7 @@ function Table() {
         planet={ planet }
       />))
   );
+
   return (
     <>
       <Filters />
