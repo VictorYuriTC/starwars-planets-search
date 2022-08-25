@@ -5,7 +5,6 @@ function Filters() {
   const {
     filterByName,
     setFilterByName,
-    setIsFilteringByNumbericInfo,
     filterByNumericValues,
     setFilterByNumbericValues,
     selectedFilters,
@@ -26,11 +25,9 @@ function Filters() {
 
   const onClickSaveNewFilter = () => {
     setSelectedFilters([...selectedFilters, { column, comparison, value }]);
-    setIsFilteringByNumbericInfo(true);
   };
 
   useEffect(() => {
-    setIsFilteringByNumbericInfo(false);
   }, [filterByName]);
 
   return (

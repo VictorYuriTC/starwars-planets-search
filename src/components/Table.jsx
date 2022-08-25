@@ -2,12 +2,14 @@ import React, { useContext } from 'react';
 import filterPlanetsContext from '../context/filterPlanetsContext';
 import Filters from './Filters';
 import PlanetTableRowCard from './PlanetTableRowCard';
+import useNumericFilters from '../hooks/useNumericFilters';
 
 function Table() {
-  const { starwarsFilteredPlanets } = useContext(filterPlanetsContext);
+  const { selectedFilters } = useContext(filterPlanetsContext);
+  const filteredPlanets = useNumericFilters();
 
   const renderFilteredPlanets = (
-    starwarsFilteredPlanets.map((planet) => (
+    filteredPlanets.map((planet) => (
       <PlanetTableRowCard
         key={ planet.url }
         planet={ planet }
@@ -17,6 +19,15 @@ function Table() {
   return (
     <>
       <Filters />
+      { selectedFilters.map((filter, index) => (
+        <span key={ index }>
+          {filter.column}
+          {' '}
+          {filter.comparison}
+          {' '}
+          {filter.value}
+        </span>
+      )) }
       <table>
         <thead>
           <tr>
