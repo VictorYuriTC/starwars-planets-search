@@ -11,7 +11,6 @@ function Filters() {
     selectedFilters,
     setSelectedFilters,
   } = useContext(filterPlanetsContext);
-
   const {
     column,
     comparison,
