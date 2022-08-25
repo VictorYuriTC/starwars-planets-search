@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import filterPlanetsContext from '../context/filterPlanetsContext';
+import OptionCard from './OptionCard';
 
 function Filters() {
   const {
@@ -27,6 +28,14 @@ function Filters() {
     setSelectedFilters([...selectedFilters, { column, comparison, value }]);
   };
 
+  const columnOptions = [
+    'population',
+    'orbital_period',
+    'diameter',
+    'rotation_period',
+    'surface_water',
+  ];
+
   useEffect(() => {
   }, [filterByName]);
 
@@ -52,21 +61,9 @@ function Filters() {
           id="column-filter"
           data-testid="column-filter"
         >
-          <option value="population">
-            population
-          </option>
-          <option value="orbital_period">
-            orbital_period
-          </option>
-          <option value="diameter">
-            diameter
-          </option>
-          <option value="rotation_period">
-            rotation_period
-          </option>
-          <option value="surface_water">
-            surface_water
-          </option>
+          { columnOptions.map((option) => (
+            <OptionCard key={ option } columnName={ option } />
+          ))}
         </select>
       </label>
       <label htmlFor="comparison-filter">
