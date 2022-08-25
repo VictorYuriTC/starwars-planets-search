@@ -10,34 +10,26 @@ const useNumericFilters = () => {
 
   const starwarsData = useStarwarsPlanetsData();
 
-  useEffect(() => {
-    const filterAllPlanets = () => {
-      setStarwarsFilteredPlanets(starwarsData);
-    };
-
-    filterAllPlanets();
-  }, [starwarsData]);
-
-  // dynamically working thankfully to Lala :)
+  /* // dynamically working thankfully to Lala :)
 
   useEffect(() => {
     const filterBySelectedColumn = () => {
       if (selectedFilters.length === 0) return;
       selectedFilters.forEach(({ column, comparison, value }) => {
         if (comparison === 'maior que') {
-          const filteredPlanets = starwarsFilteredPlanets
+          const filteredPlanets = starwarsData
             .filter((planet) => Number(planet[column]) > Number(value));
-          setStarwarsFilteredPlanets(filteredPlanets);
+          setStarwarsData(filteredPlanets);
         }
 
         if (comparison === 'igual a') {
-          const filteredPlanets = starwarsFilteredPlanets
+          const filteredPlanets = starwarsData
             .filter((planet) => Number(planet[column]) === Number(value));
           setStarwarsFilteredPlanets(filteredPlanets);
         }
 
         if (comparison === 'menor que') {
-          const filteredPlanets = starwarsFilteredPlanets
+          const filteredPlanets = starwarsData
             .filter((planet) => Number(planet[column]) < Number(value));
           setStarwarsFilteredPlanets(filteredPlanets);
         }
@@ -55,7 +47,7 @@ const useNumericFilters = () => {
     };
 
     removeAllFilters();
-  }, [selectedFilters]);
+  }, [selectedFilters]); */
 
   return starwarsFilteredPlanets;
 };

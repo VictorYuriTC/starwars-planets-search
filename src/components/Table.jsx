@@ -33,7 +33,6 @@ function Table() {
         >
           <button
             type="button"
-            key={ index }
             onClick={ () => {
               // buttons working thankfully to Carla Uyemura :)
               setStarwarsFilteredPlanets(starwarsData);
@@ -43,9 +42,7 @@ function Table() {
             } }
           >
             {filter.column}
-            {' '}
             {filter.comparison}
-            {' '}
             {filter.value}
           </button>
 
