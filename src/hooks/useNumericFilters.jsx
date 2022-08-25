@@ -15,6 +15,8 @@ const useNumericFilters = () => {
     filterAllPlanets();
   }, [starwarsData]);
 
+  // dynamically working thankfully to Lala :)
+
   useEffect(() => {
     const filterBySelectedColumn = () => {
       selectedFilters.forEach(({ column, comparison, value }) => {

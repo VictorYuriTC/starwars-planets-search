@@ -5,7 +5,7 @@ import PlanetTableRowCard from './PlanetTableRowCard';
 import useNumericFilters from '../hooks/useNumericFilters';
 
 function Table() {
-  const { selectedFilters } = useContext(filterPlanetsContext);
+  const { selectedFilters, setSelectedFilters } = useContext(filterPlanetsContext);
   const filteredPlanets = useNumericFilters();
 
   const renderFilteredPlanets = (
@@ -15,18 +15,27 @@ function Table() {
         planet={ planet }
       />))
   );
-
   return (
     <>
       <Filters />
+      {/* problem solved according to Braddock's explanation :)
+      Source: https://trybecourse.slack.com/archives/C0370KS57QW/p1661280523886229 */}
       { selectedFilters.map((filter, index) => (
-        <span key={ index }>
+        <button
+          type="button"
+          key={ index }
+          onClick={ () => {
+            const cloneArray = [...selectedFilters];
+            cloneArray.splice(index);
+            setSelectedFilters(cloneArray);
+          } }
+        >
           {filter.column}
           {' '}
           {filter.comparison}
           {' '}
           {filter.value}
-        </span>
+        </button>
       )) }
       <table>
         <thead>

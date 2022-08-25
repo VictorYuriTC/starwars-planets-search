@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import filterPlanetsContext from '../context/filterPlanetsContext';
 import OptionCard from './OptionCard';
 
@@ -45,14 +45,6 @@ function Filters() {
       <OptionCard key={ option } columnName={ option } />
     ))
   );
-
-  useEffect(() => {
-    const removeSelectedFilterFromSelect = () => {
-      columnOptions.forEach((option) => !selectedFilters.includes(option));
-    };
-
-    removeSelectedFilterFromSelect();
-  }, [selectedFilters]);
 
   return (
     <>
