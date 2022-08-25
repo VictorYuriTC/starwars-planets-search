@@ -21,22 +21,27 @@ function Table() {
       {/* problem solved according to Braddock's explanation :)
       Source: https://trybecourse.slack.com/archives/C0370KS57QW/p1661280523886229 */}
       { selectedFilters.map((filter, index) => (
-        <button
-          type="button"
-          key={ index }
+        <div
           data-testid="filter"
-          onClick={ () => {
-            const cloneArray = [...selectedFilters];
-            cloneArray.splice(index);
-            setSelectedFilters(cloneArray);
-          } }
+          key={ index }
         >
-          {filter.column}
-          {' '}
-          {filter.comparison}
-          {' '}
-          {filter.value}
-        </button>
+          <button
+            type="button"
+            key={ index }
+            onClick={ () => {
+              const cloneArray = [...selectedFilters];
+              cloneArray.splice(index);
+              setSelectedFilters(cloneArray);
+            } }
+          >
+            {filter.column}
+            {' '}
+            {filter.comparison}
+            {' '}
+            {filter.value}
+          </button>
+
+        </div>
       )) }
       <table>
         <thead>
