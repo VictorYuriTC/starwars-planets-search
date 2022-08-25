@@ -11,6 +11,8 @@ function FilterPlanetsProvider({ children }) {
   const filterByNumericValues = { column, comparison, value };
   const setFilterByNumbericValues = { setColumn, setComparison, setValue };
   const [selectedFilters, setSelectedFilters] = useState([]);
+  const [starwarsData, setStarwarsData] = useState([]);
+  const [starwarsFilteredPlanets, setStarwarsFilteredPlanets] = useState([]);
   // inspired by Braddock's weather App class :)
 
   const contextValue = {
@@ -22,6 +24,10 @@ function FilterPlanetsProvider({ children }) {
     setFilterByNumbericValues,
     selectedFilters,
     setSelectedFilters,
+    starwarsData,
+    setStarwarsData,
+    starwarsFilteredPlanets,
+    setStarwarsFilteredPlanets,
   };
 
   return (

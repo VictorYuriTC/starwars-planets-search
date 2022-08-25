@@ -3,10 +3,16 @@ import filterPlanetsContext from '../context/filterPlanetsContext';
 import Filters from './Filters';
 import PlanetTableRowCard from './PlanetTableRowCard';
 import useNumericFilters from '../hooks/useNumericFilters';
+import useStarwarsPlanetsData from '../hooks/useStarwarsPlanetsData';
 
 function Table() {
-  const { selectedFilters, setSelectedFilters } = useContext(filterPlanetsContext);
+  const {
+    selectedFilters,
+    setSelectedFilters,
+    setStarwarsFilteredPlanets,
+  } = useContext(filterPlanetsContext);
   const filteredPlanets = useNumericFilters();
+  const starwarsData = useStarwarsPlanetsData();
 
   const renderFilteredPlanets = (
     filteredPlanets.map((planet) => (
@@ -29,6 +35,7 @@ function Table() {
             type="button"
             key={ index }
             onClick={ () => {
+              setStarwarsFilteredPlanets(starwarsData);
               const cloneArray = [...selectedFilters];
               cloneArray.splice(index);
               setSelectedFilters(cloneArray);

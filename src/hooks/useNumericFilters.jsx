@@ -1,11 +1,14 @@
-import { useState, useContext, useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import filterPlanetsContext from '../context/filterPlanetsContext';
 import useStarwarsPlanetsData from './useStarwarsPlanetsData';
 
 const useNumericFilters = () => {
-  const { selectedFilters } = useContext(filterPlanetsContext);
+  const { selectedFilters,
+    starwarsFilteredPlanets,
+    setStarwarsFilteredPlanets,
+  } = useContext(filterPlanetsContext);
+
   const starwarsData = useStarwarsPlanetsData();
-  const [starwarsFilteredPlanets, setStarwarsFilteredPlanets] = useState([]);
 
   useEffect(() => {
     const filterAllPlanets = () => {
@@ -19,6 +22,7 @@ const useNumericFilters = () => {
 
   useEffect(() => {
     const filterBySelectedColumn = () => {
+      if (selectedFilters.length === 0) return;
       selectedFilters.forEach(({ column, comparison, value }) => {
         if (comparison === 'maior que') {
           const filteredPlanets = starwarsFilteredPlanets
