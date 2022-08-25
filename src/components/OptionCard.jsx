@@ -10,7 +10,7 @@ function OptionCard({ columnName }) {
 }
 
 OptionCard.propTypes = {
-  columnName: PropTypes.element.isRequired,
+  columnName: PropTypes.string.isRequired,
 };
 
 export default OptionCard;

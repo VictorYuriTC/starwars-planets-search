@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import filterPlanetsContext from '../context/filterPlanetsContext';
 import OptionCard from './OptionCard';
 
@@ -11,6 +11,14 @@ function Filters() {
     selectedFilters,
     setSelectedFilters,
   } = useContext(filterPlanetsContext);
+
+  const [columnOptions, setColumnOptions] = useState([
+    'population',
+    'orbital_period',
+    'diameter',
+    'rotation_period',
+    'surface_water',
+  ]);
 
   const {
     column,
@@ -32,19 +40,22 @@ function Filters() {
     setSelectedFilters([]);
   };
 
-  const columnOptions = [
-    'population',
-    'orbital_period',
-    'diameter',
-    'rotation_period',
-    'surface_water',
-  ];
-
   const renderColumnOptions = (
     columnOptions.map((option) => (
       <OptionCard key={ option } columnName={ option } />
     ))
   );
+
+  useEffect(() => {
+    const removeColumnOptionFromSelect = () => {
+      const columnOptionsAfterDeletion = columnOptions
+        .filter((option) => !selectedFilters.includes(option));
+      console.log(columnOptionsAfterDeletion);
+      setColumnOptions(columnOptionsAfterDeletion);
+    };
+
+    removeColumnOptionFromSelect();
+  }, [selectedFilters]);
 
   return (
     <>

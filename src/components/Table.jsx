@@ -2,11 +2,11 @@ import React, { useContext } from 'react';
 import filterPlanetsContext from '../context/filterPlanetsContext';
 import Filters from './Filters';
 import PlanetTableRowCard from './PlanetTableRowCard';
-import useNumericFilters from '../hooks/useNumericFilters';
+import useStarwarsPlanetsData from '../hooks/useStarwarsPlanetsData';
 
 function Table() {
   const { selectedFilters, setSelectedFilters } = useContext(filterPlanetsContext);
-  const filteredPlanets = useNumericFilters();
+  const filteredPlanets = useStarwarsPlanetsData();
 
   const renderFilteredPlanets = (
     filteredPlanets.map((planet) => (
@@ -27,7 +27,6 @@ function Table() {
         >
           <button
             type="button"
-            key={ index }
             onClick={ () => {
               const cloneArray = [...selectedFilters];
               cloneArray.splice(index);
@@ -35,9 +34,7 @@ function Table() {
             } }
           >
             {filter.column}
-            {' '}
             {filter.comparison}
-            {' '}
             {filter.value}
           </button>
 
