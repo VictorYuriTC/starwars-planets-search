@@ -10,6 +10,12 @@ function FilterPlanetsProvider({ children }) {
   const [isFilteringByNumericInfo, setIsFilteringByNumbericInfo] = useState(false);
   const filterByNumericValues = { column, comparison, value };
   const setFilterByNumbericValues = { setColumn, setComparison, setValue };
+  const [selectedFilters, setSelectedFilters] = useState([{
+    column: 'population',
+    comparison: 'maior que',
+    value: '0',
+  }]);
+  // inspired by Braddock's weather App class :)
 
   const contextValue = {
     filterByName,
@@ -18,6 +24,8 @@ function FilterPlanetsProvider({ children }) {
     setIsFilteringByNumbericInfo,
     filterByNumericValues,
     setFilterByNumbericValues,
+    selectedFilters,
+    setSelectedFilters,
   };
 
   return (

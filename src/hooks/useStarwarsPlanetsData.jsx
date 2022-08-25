@@ -7,9 +7,6 @@ const useStarwarsPlanetsData = () => {
   const {
     setIsFilteringByNumbericInfo,
     filterByName,
-    filterByNumericValues: {
-      column,
-    },
   } = useContext(filterPlanetsContext);
 
   useEffect(() => {
@@ -48,7 +45,7 @@ const useStarwarsPlanetsData = () => {
     };
 
     filterPlanetsByName();
-  }, [starwarsData, filterByName, column]);
+  }, [starwarsData, filterByName]);
 
   return starwarsFilteredPlanets;
 };

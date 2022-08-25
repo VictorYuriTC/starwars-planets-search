@@ -8,6 +8,8 @@ function Filters() {
     setIsFilteringByNumbericInfo,
     filterByNumericValues,
     setFilterByNumbericValues,
+    selectedFilters,
+    setSelectedFilters,
   } = useContext(filterPlanetsContext);
 
   const {
@@ -21,6 +23,11 @@ function Filters() {
     setComparison,
     setValue,
   } = setFilterByNumbericValues;
+
+  const onClickSaveNewFilter = () => {
+    setSelectedFilters([...selectedFilters, { column, comparison, value }]);
+    setIsFilteringByNumbericInfo(true);
+  };
 
   useEffect(() => {
     setIsFilteringByNumbericInfo(false);
@@ -90,7 +97,7 @@ function Filters() {
       <button
         type="button"
         data-testid="button-filter"
-        onClick={ () => { setIsFilteringByNumbericInfo(true); } }
+        onClick={ onClickSaveNewFilter }
       >
         Filtrar
       </button>

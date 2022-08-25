@@ -105,10 +105,4 @@ describe('Filters component suite tests', () => {
 
       await waitFor(() => expect(screen.findByText(/naboo/i)).toBeInTheDocument())
   });
-
-  it('should fetch the correct API after component mounting', async () => {
-    render(<App />)
-
-    const ALDERAAN_MOVIES = 'https://swapi-trybe.herokuapp.com/api/films/1/https://swapi-trybe.herokuapp.com/api/films/3/https://swapi-trybe.herokuapp.com/api/films/4/https://swapi-trybe.herokuapp.com/api/films/5/https://swapi-trybe.herokuapp.com/api/films/6/'
-  })
 });
