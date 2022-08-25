@@ -9,7 +9,7 @@ function OptionCard({ columnName }) {
   );
 }
 
-PropTypes.OptionCard = {
+OptionCard.propTypes = {
   columnName: PropTypes.element.isRequired,
 };
 

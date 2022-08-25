@@ -41,6 +41,16 @@ const useNumericFilters = () => {
     filterBySelectedColumn();
   }, [selectedFilters]);
 
+  useEffect(() => {
+    const removeAllFilters = () => {
+      if (selectedFilters.length === 0) {
+        setStarwarsFilteredPlanets(starwarsData);
+      }
+    };
+
+    removeAllFilters();
+  }, [selectedFilters]);
+
   return starwarsFilteredPlanets;
 };
 

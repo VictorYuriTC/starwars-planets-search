@@ -28,6 +28,10 @@ function Filters() {
     setSelectedFilters([...selectedFilters, { column, comparison, value }]);
   };
 
+  const onClickRemoveAllFilters = () => {
+    setSelectedFilters([]);
+  };
+
   const columnOptions = [
     'population',
     'orbital_period',
@@ -36,8 +40,19 @@ function Filters() {
     'surface_water',
   ];
 
+  const renderColumnOptions = (
+    columnOptions.map((option) => (
+      <OptionCard key={ option } columnName={ option } />
+    ))
+  );
+
   useEffect(() => {
-  }, [filterByName]);
+    const removeSelectedFilterFromSelect = () => {
+      columnOptions.forEach((option) => !selectedFilters.includes(option));
+    };
+
+    removeSelectedFilterFromSelect();
+  }, [selectedFilters]);
 
   return (
     <>
@@ -61,9 +76,7 @@ function Filters() {
           id="column-filter"
           data-testid="column-filter"
         >
-          { columnOptions.map((option) => (
-            <OptionCard key={ option } columnName={ option } />
-          ))}
+          { renderColumnOptions }
         </select>
       </label>
       <label htmlFor="comparison-filter">
@@ -94,6 +107,13 @@ function Filters() {
         onClick={ onClickSaveNewFilter }
       >
         Filtrar
+      </button>
+      <button
+        type="button"
+        data-testid="button-remove-filters"
+        onClick={ onClickRemoveAllFilters }
+      >
+        Remover filtros
       </button>
     </>
   );
